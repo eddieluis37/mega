@@ -20,7 +20,7 @@
 
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-        <a href="#" class="h1"><b>All 369</a>
+        <a href="#" class="h1"><b>Mega 369</a>
 </div>
     <div class="card-body">
         <p class="login-box-msg">Iniciar sesión</p>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-block">
-                                    {{ __('Login') }}
+                                    {{ __('Ingresar') }}
                                 </button>
                             </div>
                         </div>

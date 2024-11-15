@@ -15,10 +15,31 @@ class UnitofmeasureSeeder extends Seeder
     public function run()
     {
         Unitofmeasure::create([
-        	'name' => 'KILOGRAMO NETO',
+        	'name' => 'GRAMOS',
         	'description' => '',
         	'status' => true
         ]);
+        Unitofmeasure::create([
+        	'name' => 'KILOGRAMOS',
+        	'description' => '',
+        	'status' => true
+        ]);
+        Unitofmeasure::create([
+        	'name' => 'LIBRA',
+        	'description' => '',
+        	'status' => true
+        ]);
+        Unitofmeasure::create([
+        	'name' => 'LITRO',
+        	'description' => '',
+        	'status' => true
+        ]);
+        Unitofmeasure::create([
+        	'name' => 'PAQUETE',
+        	'description' => '',
+        	'status' => true
+        ]);
+
         Unitofmeasure::create([
         	'name' => 'UNIDAD',
         	'description' => '',
