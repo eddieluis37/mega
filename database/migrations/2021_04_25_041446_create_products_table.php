@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');           
             $table->unsignedBigInteger('level_product_id')->default(2);           
             $table->unsignedBigInteger('meatcut_id')->default(61);           
-            $table->unsignedBigInteger('unitofmeasure_id')->default(1);           
+            $table->unsignedBigInteger('unitofmeasure_id')->default(1);
+            $table->enum('presentacion', ['Gramos', 'Kilogramos', 'Libras', 'Litros', 'Paquete', 'Unidad'])->default('Kilogramos');           
             $table->string('name',255);
             $table->string('code', 20)->default(99999)->nullable();
             $table->string('barcode',50)->nullable();
