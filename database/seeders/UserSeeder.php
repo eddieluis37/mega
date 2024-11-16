@@ -97,7 +97,7 @@ class UserSeeder extends Seeder
             'profile' => 'Comercial',
             'status' => 'Active',
             'password' => bcrypt('comercial@puracarnes.com')
-        ]);       
+        ]);
         User::create([
             'name' => 'PRINCIPAL',
             'phone' => '3008755514',
@@ -163,7 +163,12 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'Pos_Create']);
 
         // crear permisos para modulo Workshop
-         Permission::create(['name' => 'Workshop']);
+        Permission::create(['name' => 'Workshop']);
+
+
+        // crear permisos para modulo Ordenes de pedidos
+        Permission::create(['name' => 'open-order']);
+
 
 
 
@@ -192,7 +197,27 @@ class UserSeeder extends Seeder
 
         // asignar permisos al rol Admin
         $admin->givePermissionTo([
-            'Admin_Menu', 'Compras_Menu', 'Produccion', 'Traslados', 'Workshop', 'Pos_Create', 'Inventory', 'Cashout_Create', 'Parametros_Create', 'Category_View', 'Category_Create', 'Category_Search', 'Category_Update', 'Category_Destroy', 'Product_View', 'Product_Create', 'Product_Search', 'Product_Update', 'Product_Destroy', 'Report_Create'
+            'Admin_Menu',
+            'Compras_Menu',
+            'Produccion',
+            'Traslados',
+            'Workshop',
+            'Pos_Create',
+            'Inventory',
+            'Cashout_Create',
+            'Parametros_Create',
+            'Category_View',
+            'Category_Create',
+            'Category_Search',
+            'Category_Update',
+            'Category_Destroy',
+            'Product_View',
+            'Product_Create',
+            'Product_Search',
+            'Product_Update',
+            'Product_Destroy',
+            'Report_Create',
+            'open-order'
         ]);
 
         // asignar permisos al rol Cajero
@@ -229,6 +254,5 @@ class UserSeeder extends Seeder
         User::find(10)->assignRole('Comercial');
         User::find(11)->assignRole('Comercial');
         User::find(12)->assignRole('Comercial');
-        
     }
 }
