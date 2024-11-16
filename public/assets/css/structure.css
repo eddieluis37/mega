@@ -22,7 +22,7 @@ body {
   font-family: 'Quicksand', sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #3b3f5c; }
+  color: #000000; }
 
 :focus {
   outline: none; }
@@ -50,7 +50,7 @@ strong {
   font-weight: 600; }
 
 code {
-  color: #e7515a; }
+  color: #f80011; }
 
 /*Page title*/
 .page-header {

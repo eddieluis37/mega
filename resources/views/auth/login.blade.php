@@ -20,7 +20,7 @@
 
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-        <a href="#" class="h1"><b>Mega 369</a>
+        <a href="#" class="h1"><b>ERP Mega</a>
 </div>
     <div class="card-body">
         <p class="login-box-msg">Iniciar sesión</p>

@@ -416,7 +416,11 @@ select.form-control.form-custom {
   box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.1);
   will-change: opacity, transform;
   transition: all 0.3s ease-out;
-  -webkit-transition: all 0.3s ease-out; }
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
   .btn svg {
     width: 20px;
     height: 20px;
@@ -1960,7 +1964,7 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   color: #2196f3 !important; }
 
 .text-danger {
-  color: #e7515a !important; }
+  color: #f80011 !important; }
 
 .text-warning {
   color: #e2a03f !important; }
