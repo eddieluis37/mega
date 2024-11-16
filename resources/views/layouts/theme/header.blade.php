@@ -3,7 +3,7 @@
         <ul class="navbar-item flex-row">
             <li class="nav-item theme-logo">
                 <a href="{{ route('login') }}">
-                    <img src="{{asset('assets/img/Logo_CSV3.png')}}" class="navbar-logo" alt="logo">
+                    <img src="{{asset('assets/img/mega-carnes-frias.svg')}}" class="navbar-logo" alt="logo">
                 </a>
             </li>
 
@@ -90,8 +90,8 @@
                         <div class="media mx-auto">
                             <img src="{{asset('assets/img/logo.jpg')}}" class="img-fluid mr-2" alt="avatar">
                             <div class="media-body">
-                                <h5>@guest Eddie Luis @else {{Auth()->user()->name}} @endguest</h5>
-                                <p>Carnicos SV SAS</p>
+                                <h5>@guest Mega @else {{Auth()->user()->name}} @endguest</h5>
+                                <p>Erp-Mega</p>
                             </div>
                         </div>
                     </div>

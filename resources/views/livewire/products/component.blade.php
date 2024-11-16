@@ -23,9 +23,9 @@
 					<table class="table table-striped mt-1">
 						<thead class="text-white" style="background: #3B3F5C;">
 							<tr>
-								<th class="table-th text-white text-center">CATEGORÍA</th>
-								<th class="table-th text-white">BASICO</th>
-								<th class="table-th text-white">NOMBRE</th>
+								<th class="table-th text-white text-center">CAT</th>
+								<th class="table-th text-white">FAMILIA</th>
+								<th class="table-th text-white">SUBFAMILIA</th>
 								<th class="table-th text-white text-center">CODE</th>
 								<th class="table-th text-white text-center">BARCODE</th>
 								<th class="table-th text-white text-center">PRECIO_M</th>
