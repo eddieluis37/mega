@@ -366,20 +366,25 @@
 
         <div class="submenu" id="dashboard">
             <ul class="submenu-list" data-parent-element="#dashboard">
-                <li>
-                    <a href="{{ url('home') }}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart">
+                <li class="active">
+                    <a href="{{ url('home') }}" style="display: flex; align-items: center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart" style="margin-right: 8px;">
                             <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
                             <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                        </svg> Generales</a>
+                        </svg>
+                        Generales
+                    </a>
                 </li>
-                <li class="active">
-                    <a href="{{ url('reports') }}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag">
+                <li>
+                    <a href="{{ url('reports') }}" style="display: flex; align-items: center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag" style="margin-right: 8px;">
                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg> Reporte de Ventas </a>
+                        </svg>
+                        Reporte de Ventas
+                    </a>
                 </li>
-
                 <li class="sub-submenu">
                     <a role="menu" class="collapsed" data-toggle="collapse" data-target="#compra" aria-expanded="false">
                         <div><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
