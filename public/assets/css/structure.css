@@ -247,8 +247,8 @@ code {
 
 .navbar {
   padding: 0 0 0 20px;
-  background: #c91313;
-  min-height: 50px;
+  background: #31113a;
+  min-height: 65px;
   border-bottom: 1px solid #fafafa;
   -webkit-transition: .3s ease all;
   transition: .3s ease all;
