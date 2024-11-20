@@ -1,48 +1,181 @@
-<div class="card">
-	<div class="card-body">
-		<div>
-			<input type="hidden" value="0" name="alistamientoId" id="alistamientoId">
-		</div>
-		<div class="row g-3">
-			
-			<div class="col-md-4">
-				<div class="task-header">
-					<div class="form-group">
-						<label for="" class="form-label">Centro de costo</label>
-						<select class="form-control form-control-sm input" name="centrocosto" id="centrocosto" required>
-							<option value="">Seleccione el centro de costo</option>
-							@foreach($centros as $cencosto)
-							<option value="{{$cencosto->id}}" {{ $cencosto->id == 1 ? 'selected' : '' }}>{{$cencosto->name}}</option>
-							@endforeach
-						</select>
-						<span class="text-danger error-message"></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="task-header">
-					<div class="form-group">
-						<label for="" class="form-label">Cajero</label>
-						<select class="form-control form-control-sm input " name="cajero" id="cajero" required>
-							<option value="">Seleccione el cajero</option>
-							@foreach($usuario as $option)
-							<option value="{{ $option['id'] }}" data="{{$option}}">{{ $option['name'] }}</option>
-							@endforeach
-						</select>
-						<span class="text-danger error-message"></span>
-					</div>
-				</div>
-			</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="connect-sorting-content">
+            <div class="card simple-title-task ui-sortable-handle">
+                <div class="card-body">
+                    <div class="btn-toolbar justify-content-between">
+                        <div>
+                            <input type="hidden" value="0" name="idbeneficio" id="idbeneficio">
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Categoria</label>
+                                    <div>
+                                        <select class="form-control form-control-sm" name="centrocosto_id" id="centrocosto_id" required="">
+                                            <option value="">Seleccione la categoria</option>
+                                            @foreach ($centros as $c)
+                                            <option value="{{$c->id}}" {{ $c->id == 1 ? 'selected' : '' }}>{{$c->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('centrocostoid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Marca</label>
+                                    <select class="form-control selectVisceras" name="clientvisceras_id" id="clientvisceras_id" required="">
+                                        <option value="">Buscar un proveedor</option>
+                                        @foreach ($centros as $p)
+                                        <option value="{{$p->id}}">{{$p->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('clientviscerasid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
 
-			<div class="col-md-4">
-				<div class="task-header">
-					<div class="form-group">
-						<label for="" class="form-label">Base inicial</label>
-						<input type="text" class="form-control" id="base" name="base" required="true">
-						<span class="text-danger error-message"></span>
-					</div>
-				</div>
-			</div>			
-		</div>
-	</div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Nivel</label>
+                                    <select class="form-control selectPieles" name="clientpieles_id" id="clientpieles_id" required="">
+                                        <option value="">Buscar un nivel</option>
+                                        @foreach ($centros as $p)
+                                        <option value="{{$p->id}}">{{$p->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('clientpielesid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Presentacion</label>
+                                    <select class="form-control selectVisceras" name="clientvisceras_id" id="clientvisceras_id" required="">
+                                        <option value="">Buscar una presentacion</option>
+                                        @foreach ($centros as $p)
+                                        <option value="{{$p->id}}">{{$p->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('clientviscerasid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Familia</label>
+                                    <select class="form-control selectProvider" name="thirds_id" id="thirds_id" required="">
+                                        <option value="">Buscar una familia</option>
+                                        @foreach ($centros as $p)
+                                        <option value="{{$p->id}}">{{$p->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('thirdsid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Subfamilia</label>
+                                    <input type="text" class="form-control" name="factura" id="factura" placeholder="ej: Chorizo" required="">
+                                    @error('cantidad') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Código</label>
+                                    <input type="text" class="form-control" name="finca" id="finca" placeholder="ej: RE001" required>
+                                    @error('finca') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Código de Barras</label>
+                                    <input type="text" class="form-control" name="finca" id="finca" placeholder="ej: 777666999222333" required>
+                                    @error('finca') <span class="text-danger er">{{ $message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="task-header">
+                                <div class="form-group">
+                                    <label>Stock Alertas</label>
+                                    <div>
+                                        <select class="form-control form-control-sm" name="plantasacrificio_id" id="plantasacrificio_id" required="">
+                                            <option value="">Seleccione</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        @error('plantasacrificioid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <label for="sacrificio">IVA</label>
+                            <div class="input-group flex-nowrap">
+                                <input type="text" name="pesopie1" id="pesopie1" class="form-control" aria-describedby="helpId" placeholder="ej: 0" step="0.01" required="">
+                                <span class="input-group-text" id="addon-wrapping">%</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <label for="fomento">Otro Impuesto</label>
+                            <div class="input-group flex-nowrap">
+                                <input type="text" name="pesopie1" id="pesopie1" class="form-control" aria-describedby="helpId" placeholder="ej: 0" step="0.01" required="">
+                                <span class="input-group-text" id="addon-wrapping">%</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Seleccione la imagen</label>
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                        </div>
+                    </div>
+                    <!--div class="col-sm-12 col-md-4">
+									<div class="task-header">
+										<div class="form-group">
+											<label>Fecha</label>
+											<input type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control" name="fecha_beneficio" id="fecha_beneficio" placeholder="ej: dd/dd/aaaa">
+											@error('fecha_beneficio') <span class="text-danger er">{{ $message}}</span>@enderror
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<div class="task-header">
+										<div class="form-group">
+											<label>Lote</label>
+											<input type="text" class="form-control" name="lote" id="lote" placeholder="ej: PCD789" required="" readonly>
+											@error('lote') <span class="text-danger er">{{ $message}}</span>@enderror
+										</div>
+									</div>
+								</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

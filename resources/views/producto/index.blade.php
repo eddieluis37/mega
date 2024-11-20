@@ -20,10 +20,10 @@
 					<table id="tableAlistamiento" class="table table-striped mt-1">
 						<thead class="text-white" style="background: #3B3F5C">
 							<tr>
-								<th class="table-th text-white">T</th>							
-								<th class="table-th text-white ">CentroCosto</th>		
+								<th class="table-th text-white">T</th>
+								<th class="table-th text-white ">CentroCosto</th>
 								<th class="table-th text-white ">CAJERO</th>
-								<th class="table-th text-white ">BASE</th>							
+								<th class="table-th text-white ">BASE</th>
 								<th class="table-th text-white ">ESTADO</th>
 								<th class="table-th text-white">INICIO</th>
 								<th class="table-th text-white">CIERRE</th>
@@ -38,21 +38,22 @@
 		</div>
 	</div>
 	<!-- modal -->
-	<div class="modal fade" id="modal-create-alistamiento" aria-hidden="true" data-keyboard="false" data-backdrop="static" >
+	<div class="modal fade" id="modal-create-alistamiento" aria-hidden="true" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content bg-default">
+			<div class="modal-content bg-dark text-white"> <!-- Use bg-dark for dark background -->
 				<fieldset id="contentDisable">
 					<form action="" id="form-alistamiento">
-						<div class="modal-header">
+						<div class="modal-header bg-secondary"> <!-- Use bg-secondary for a darker header -->
 							<h4 class="modal-title">Crear productos</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-				 		<div class="modal-body">
+						<div class="modal-body">
 							@include('producto.modal_create')
 						</div>
 						<div class="modal-footer">
-							<button type="button" id="btnModalClose" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<button type="button" id="btnModalClose" class="btn btn-light" data-dismiss="modal">Cancelar</button>
 							<button type="submit" id="btnAddalistamiento" class="btn btn-primary">Aceptar</button>
 						</div>
 					</form>
