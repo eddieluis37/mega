@@ -57,6 +57,7 @@ use App\Http\Controllers\inventory\CentroCostoProductController;
 use App\Http\Controllers\CentroCostoProdController;
 use App\Http\Controllers\AsignarPreciosProdController;
 use App\Http\Controllers\caja\pdfCierreCajaController;
+use App\Http\Controllers\producto\productoController;
 use App\Http\Controllers\compensado\pdfCompensadoController;
 use App\Http\Controllers\faster\fasterController;
 use App\Http\Controllers\transfer\TransferController;
@@ -93,6 +94,8 @@ use App\Http\Controllers\reportes\reporteventaprodclientController;
 use App\Http\Controllers\reportes\reporteventaprodController;
 use App\Http\Controllers\reportes\reportecomprarequeridaController;
 use App\Http\Controllers\reportes\reporteasignarpreciosController;
+
+
 
 /************************************************* */
 
@@ -377,6 +380,15 @@ Route::group(['middleware' => [('auth')]], function () {
     Route::get('caja/showReciboCaja/{id}', [cajaController::class, 'showReciboCaja'])->name('caja.showReciboCaja');
 
     Route::get('caja/pdfCierreCaja/{id}', [pdfCierreCajaController::class, 'pdfCierreCaja']);
+    
+    /**PRODUCTOS SIN LIVEWIRE**/
+    Route::get('producto', [productoController::class, 'index'])->name('producto.index');
+    Route::post('productosave', [productoController::class, 'store'])->name('producto.save');
+    Route::get('showproducto', [productoController::class, 'show'])->name('producto.showproducto');
+    Route::get('producto/create/{id}', [productoController::class, 'create'])->name('producto.create');
+    Route::post('producto/create/{id}', [productoController::class, 'storeCierreCaja'])->name('producto.cierre');
+    Route::get('producto/showReciboCaja/{id}', [productoController::class, 'showReciboCaja'])->name('producto.showReciboProducto');
+    
 
     /** TALLER ***/
     Route::get('workshop', [workshopController::class, 'index'])->name('workshop.index');

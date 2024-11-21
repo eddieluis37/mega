@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Eddie Rada',
             'phone' => '3324769453',
-            'email' => 'admin@puracarnes.com',
+            'email' => 'admin@carnesfriasmega.com',
             'profile' => 'Admin',
             'status' => 'Active',
             'password' => bcrypt('ab$')
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Jair Rada Rada',
             'phone' => '3008755514',
-            'email' => 'gerencia.comercial@puracarnes.com',
+            'email' => 'gerencia.comercial@carnesfriasmega.com',
             'profile' => 'Admin',
             'status' => 'Active',
             'password' => bcrypt('3016032085')
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Milagros Peña',
             'phone' => '3008755514',
-            'email' => 'gerencia.general@puracarnes.com',
+            'email' => 'gerencia.general@carnesfriasmega.com',
             'profile' => 'Admin',
             'status' => 'Active',
             'password' => bcrypt('3044228481')
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Jair Rada Rada',
             'phone' => '3008755514',
-            'email' => 'contabilidad@puracarnes.com',
+            'email' => 'contabilidad@carnesfriasmega.com',
             'profile' => 'Admin',
             'status' => 'Active',
             'password' => bcrypt('3155352110')
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'directivo',
             'phone' => '3008755514',
-            'email' => 'directivo@puracarnes.com',
+            'email' => 'directivo@carnesfriasmega.com',
             'profile' => 'Admin',
             'status' => 'Active',
             'password' => bcrypt('3016032085')
@@ -61,15 +61,15 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'compras',
             'phone' => '3008755514',
-            'email' => 'compras@puracarnes.com',
+            'email' => 'compras@carnesfriasmega.com',
             'profile' => 'Compras',
             'status' => 'Active',
-            'password' => bcrypt('compras@puracarnes.com')
+            'password' => bcrypt('compras@carnesfriasmega.com')
         ]);
         User::create([
             'name' => 'produccion',
             'phone' => '3008755514',
-            'email' => 'produccion@puracarnes.com',
+            'email' => 'produccion@carnesfriasmega.com',
             'profile' => 'Produccion',
             'status' => 'Active',
             'password' => bcrypt('Produccion2023.')
@@ -77,43 +77,43 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'costos',
             'phone' => '3008755514',
-            'email' => 'costos@puracarnes.com',
+            'email' => 'costos@carnesfriasmega.com',
             'profile' => 'Costos',
             'status' => 'Active',
-            'password' => bcrypt('costos@puracarnes.com')
+            'password' => bcrypt('costos@carnesfriasmega.com')
         ]);
         User::create([
             'name' => 'Tesoreria',
             'phone' => '3008755514',
-            'email' => 'tesoreria@puracarnes.com',
+            'email' => 'tesoreria@carnesfriasmega.com',
             'profile' => 'Tesoreria',
             'status' => 'Active',
-            'password' => bcrypt('tesoreria@puracarnes.com')
+            'password' => bcrypt('tesoreria@carnesfriasmega.com')
         ]);
         User::create([
             'name' => 'comercial',
             'phone' => '3008755514',
-            'email' => 'comercial@puracarnes.com',
+            'email' => 'comercial@carnesfriasmega.com',
             'profile' => 'Comercial',
             'status' => 'Active',
-            'password' => bcrypt('comercial@puracarnes.com')
+            'password' => bcrypt('comercial@carnesfriasmega.com')
         ]);
         User::create([
             'name' => 'PRINCIPAL',
             'phone' => '3008755514',
-            'email' => 'cajaprincipalpcguadalupe@puracarnes.com',
+            'email' => 'cajaprincipalpcguadalupe@carnesfriasmega.com',
             'profile' => 'Comercial',
             'status' => 'Active',
-            'password' => bcrypt('cajaprincipalpcguadalupe@puracarnes.com')
+            'password' => bcrypt('cajaprincipalpcguadalupe@carnesfriasmega.com')
         ]);
 
         User::create([
             'name' => 'AUXILIAR',
             'phone' => '3008755514',
-            'email' => 'cajaauxiliarpcguadalupe@puracarnes.com',
+            'email' => 'cajaauxiliarpcguadalupe@carnesfriasmega.com',
             'profile' => 'Comercial',
             'status' => 'Active',
-            'password' => bcrypt('cajaauxiliarpcguadalupe@puracarnes.com')
+            'password' => bcrypt('cajaauxiliarpcguadalupe@carnesfriasmega.com')
         ]);
 
 
@@ -236,7 +236,7 @@ class UserSeeder extends Seeder
         $ventas->givePermissionTo(['Pos_Create', 'Cashout_Create', 'Category_View', 'Category_Search', 'Product_View', 'Product_Search']);
 
         // asignar permisos al usuario comercial o cajero, activa menu ventas y caja
-        $comercial->givePermissionTo(['Pos_Create']);
+        $comercial->givePermissionTo(['Pos_Create', 'Product_View', 'Product_Search' ]);
 
         /************************ Asignar role Admin al usuario */
         /* $uAdmin = User::find(1);

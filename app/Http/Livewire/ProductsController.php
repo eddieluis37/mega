@@ -15,6 +15,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Traits\CartTrait;
 use App\Models\Products\Meatcut;
+use App\Models\Products\Unitofmeasure;
 
 class ProductsController extends Component
 {
@@ -30,7 +31,7 @@ class ProductsController extends Component
 		$this->emit('global-msg', "SE AGREGÓ EL PRODUCTO AL CARRITO");
 	}
 
-	public $name, $code, $barcode, $iva, $otro_impuesto, $price_fama, $levelproductid, $alerts, $categoryid, $centrocosto_id, $products_id, $meatcutid, $search, $image, $selected_id, $pageTitle, $componentName;
+	public $name, $code, $barcode, $iva, $otro_impuesto, $price_fama, $levelproductid, $unitofmeasureid, $alerts, $categoryid, $centrocosto_id, $products_id, $meatcutid, $search, $image, $selected_id, $pageTitle, $componentName;
 
 	private $pagination = 10;
 
@@ -48,6 +49,7 @@ class ProductsController extends Component
 		$this->categoryid = 'Elegir';
 		$this->meatcutid = 'Elegir';
 		$this->levelproductid = 'Elegir';
+		$this->unitofmeasureid = 'Elegir';
 
 		$this->dispatchBrowserEvent('refreshSelect2');
 	}
@@ -81,6 +83,7 @@ class ProductsController extends Component
 			'categories' => Category::orderBy('name', 'asc')->get(),
 			'cortes' => Meatcut::where('status', 1)->orderBy('name', 'asc')->get(),
 			'niveles' => Levels_products::orderBy('name', 'ASC')->get(),
+			'presentaciones' => Unitofmeasure::orderBy('name', 'ASC')->get(),
 		])
 			->extends('layouts.theme.app')
 			->section('content');
@@ -93,6 +96,7 @@ class ProductsController extends Component
 			'meatcutid' => 'required|not_in:Elegir',
 			'name' => 'required|unique:products|min:3',
 			'levelproductid' => 'required|not_in:Elegir',
+			'unitofmeasureid' => 'required|not_in:Elegir',
 			'code' => 'required',
 			'price_fama' => 'required',
 			'iva' => 'required',
@@ -106,6 +110,7 @@ class ProductsController extends Component
 			'meatcutid.not_in' => 'Elige un nombre de corte de carne diferente de Elegir',
 			'name.required' => 'Nombre del producto requerido',
 			'levelproductid.not_in' => 'Elige nivel diferente de Elegir',
+			'unitofmeasureid.not_in' => 'Elige nivel diferente de Elegir',
 			'name.unique' => 'Ya existe el nombre del producto',
 			'name.min' => 'El nombre del producto debe tener al menos 3 caracteres',
 			'code.required' => 'El codigo es requerido',
@@ -124,6 +129,7 @@ class ProductsController extends Component
 			'meatcut_id' => $this->meatcutid,
 			'name' => $this->name,
 			'level_product_id' => $this->levelproductid,
+			'unitofmeasure_id' => $this->unitofmeasureid,
 			'code' => $this->code,
 			'barcode' => $this->barcode,
 			'price_fama' => $this->price_fama,
@@ -177,6 +183,7 @@ class ProductsController extends Component
 		$this->selected_id = $product->id;
 		$this->name = $product->name;
 		$this->levelproductid = $product->level_product_id;
+		$this->unitofmeasureid = $product->unitofmeasure_id;
 		$this->code = $product->code;
 		$this->barcode = $product->barcode;
 		$this->iva = $product->iva;
@@ -195,6 +202,7 @@ class ProductsController extends Component
 		$rules  = [
 			'name' => "required|min:3|unique:products,name,{$this->selected_id}",
 			'levelproductid' => 'required|not_in:Elegir',
+			'unitofmeasureid' => 'required|not_in:Elegir',
 			'iva' => 'required',
 			'price_fama' => 'required',
 			'alerts' => 'required',
@@ -207,6 +215,7 @@ class ProductsController extends Component
 			'name.unique' => 'Ya existe el nombre del producto',
 			'name.min' => 'El nombre del producto debe tener al menos 3 caracteres',
 			'levelproductid.not_in' => 'Elige nivel diferente de Elegir',
+			'unitofmeasureid.not_in' => 'Elige nivel diferente de Elegir',
 			'iva.required' => 'El iva es requerido',
 			'price_fama.required' => 'El precio es requerido',
 			'alerts.required' => 'Ingresa el valor mínimo en existencias',
@@ -221,6 +230,7 @@ class ProductsController extends Component
 		$product->update([
 			'name' => $this->name,
 			'level_product_id' => $this->levelproductid,
+			'unitofmeasure_id' => $this->unitofmeasureid,
 			'code' => $this->code,
 			'iva' => $this->iva,
 			'otro_impuesto' => $this->otro_impuesto,
@@ -254,6 +264,7 @@ class ProductsController extends Component
 	{
 		$this->name = '';
 		$this->levelproductid = 'Elegir';
+		$this->unitofmeasureid = 'Elegir';
 		$this->code = '';
 		$this->barcode = '';
 		$this->iva = '';

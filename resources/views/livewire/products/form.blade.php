@@ -18,7 +18,7 @@
 
 	<div class="col-sm-12 col-md-4">
 		<div class="form-group">
-			<label>Corte principal</label>
+			<label>Familia</label>
 			<select wire:model='meatcutid' class="form-control" id="meatcutid">
 				<option value="Elegir" disabled>Elegir</option>
 				@foreach($cortes as $corte)
@@ -31,7 +31,7 @@
 
 	<div class="col-sm-12 col-md-4">
 		<div class="form-group">
-			<label>Nombre</label>
+			<label>Subfamilia</label>
 			<input type="text" wire:model.lazy="name" class="form-control product-name" placeholder="ej: Nombre del producto" autofocus>
 			@error('name') <span class="text-danger er">{{ $message}}</span>@enderror
 		</div>
@@ -67,6 +67,18 @@
 
 	<div class="col-sm-12 col-md-4">
 		<div class="form-group">
+			<label>Presentación</label>
+			<select wire:model='unitofmeasureid' class="form-control" id="unitofmeasureid">
+				<option value="Elegir" disabled>Elegir</option>
+				@foreach($presentaciones as $presentacion)
+				<option value="{{$presentacion->id}}">{{$presentacion->name}}</option>
+				@endforeach
+			</select>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-4">
+		<div class="form-group">
 			<label>Precio mínino</label>
 			<input type="text" wire:model.lazy="price_fama" class="form-control" placeholder="ej: 0.00">
 			@error('price_fama') <span class="text-danger er">{{ $message}}</span>@enderror
@@ -80,6 +92,7 @@
 			@error('alerts') <span class="text-danger er">{{ $message}}</span>@enderror
 		</div>
 	</div>
+
 	<div class="col-sm-12 col-md-2">
 		<div class="form-group">
 			<label>Iva</label>
