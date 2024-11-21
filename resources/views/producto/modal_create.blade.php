@@ -14,7 +14,7 @@
                                     <div>
                                         <select class="form-control form-control-sm" name="centrocosto_id" id="centrocosto_id" required="">
                                             <option value="">Seleccione la categoria</option>
-                                            @foreach ($centros as $c)
+                                            @foreach ($categorias as $c)
                                             <option value="{{$c->id}}" {{ $c->id == 1 ? 'selected' : '' }}>{{$c->name}}</option>
                                             @endforeach
                                         </select>
@@ -29,7 +29,7 @@
                                     <label>Marca</label>
                                     <select class="form-control selectVisceras" name="clientvisceras_id" id="clientvisceras_id" required="">
                                         <option value="">Buscar un proveedor</option>
-                                        @foreach ($centros as $p)
+                                        @foreach ($proveedores as $p)
                                         <option value="{{$p->id}}">{{$p->name}}</option>
                                         @endforeach
                                     </select>
@@ -44,7 +44,7 @@
                                     <label>Nivel</label>
                                     <select class="form-control selectPieles" name="clientpieles_id" id="clientpieles_id" required="">
                                         <option value="">Buscar un nivel</option>
-                                        @foreach ($centros as $p)
+                                        @foreach ($niveles as $p)
                                         <option value="{{$p->id}}">{{$p->name}}</option>
                                         @endforeach
                                     </select>
@@ -58,7 +58,7 @@
                                     <label>Presentacion</label>
                                     <select class="form-control selectVisceras" name="clientvisceras_id" id="clientvisceras_id" required="">
                                         <option value="">Buscar una presentacion</option>
-                                        @foreach ($centros as $p)
+                                        @foreach ($presentaciones as $p)
                                         <option value="{{$p->id}}">{{$p->name}}</option>
                                         @endforeach
                                     </select>
@@ -72,7 +72,7 @@
                                     <label>Familia</label>
                                     <select class="form-control selectProvider" name="thirds_id" id="thirds_id" required="">
                                         <option value="">Buscar una familia</option>
-                                        @foreach ($centros as $p)
+                                        @foreach ($familias as $p)
                                         <option value="{{$p->id}}">{{$p->name}}</option>
                                         @endforeach
                                     </select>

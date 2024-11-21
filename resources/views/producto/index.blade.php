@@ -10,7 +10,7 @@
 				</h4>
 				<ul class="tabs tab-pills">
 					<li>
-						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-alistamiento" title="Crear nuevo turno">Crear Turno</a>
+						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-alistamiento" title="Crear nuevo turno">Crear Productos</a>
 					</li>
 				</ul>
 			</div>
@@ -44,7 +44,7 @@
 				<fieldset id="contentDisable">
 					<form action="" id="form-alistamiento">
 						<div class="modal-header bg-secondary"> <!-- Use bg-secondary for a darker header -->
-							<h4 class="modal-title">Crear productos</h4>
+							<h4 class="modal-title" style="color: white; font-weight: bold;">Productos | CREAR </h4>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

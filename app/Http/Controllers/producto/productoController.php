@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\caja\Caja;
 use App\Models\Category;
 use App\Models\centros\Centrocosto;
+use App\Models\Third;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use App\Models\Products\Meatcut;
 use App\Http\Controllers\metodosgenerales\metodosrogercodeController;
+use App\Models\Levels_products;
+use App\Models\Products\Unitofmeasure;
 use App\Models\shopping\shopping_enlistment;
 use App\Models\shopping\shopping_enlistment_details;
+
 
 
 class productoController extends Controller
@@ -28,11 +32,16 @@ class productoController extends Controller
 
     public function index()
     {
-        $category = Category::WhereIn('id', [1, 2, 3])->get();
+        $categorias = Category::orderBy('id')->get();
+        $proveedores = Third::Where('status', 1)->get();
+        $niveles = Levels_products::Where('status', 1)->get();
+        $presentaciones = Unitofmeasure::Where('status', 1)->get();
+        $familias = Meatcut::Where('status', 1)->get();
+
         $usuario = User::WhereIn('id', [9, 11, 12])->get();
 
         $centros = Centrocosto::WhereIn('id', [1])->get();
-        return view("producto.index", compact('usuario', 'category', 'centros'));
+        return view("producto.index", compact('usuario', 'categorias', 'proveedores', 'niveles', 'presentaciones', 'familias',  'centros'));
     }
 
     public function show()
@@ -65,7 +74,7 @@ class productoController extends Controller
                 return $statusInventory;
             })
 
-       /*      <div class="text-center">
+            /*      <div class="text-center">
             <a href="caja/create/' . $data->id . '" class="btn btn-dark" title="RetiroDinero" >
                 <i class="fas fa-money-bill-alt"></i>
             </a>
@@ -134,11 +143,11 @@ class productoController extends Controller
                 }
                 return $btn;
             })
-          
+
             ->rawColumns(['fecha1', 'fecha2', 'inventory', 'action'])
             ->make(true);
     }
-       
+
     public function pdf($id)
     {
         $caja = Caja::findOrFail($id);
@@ -243,7 +252,7 @@ class productoController extends Controller
         }
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -429,7 +438,7 @@ class productoController extends Controller
      * @param  \App\Models\Caja  $caja
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Show the form for editing the specified resource.
