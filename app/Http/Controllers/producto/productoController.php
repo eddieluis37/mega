@@ -33,7 +33,7 @@ class productoController extends Controller
     public function index()
     {
         $categorias = Category::orderBy('id')->get();
-        $proveedores = Third::Where('status', 1)->get();
+        $proveedores = Third::Where('proveedor', 1)->get();
         $niveles = Levels_products::Where('status', 1)->get();
         $presentaciones = Unitofmeasure::Where('status', 1)->get();
         $familias = Meatcut::Where('status', 1)->get();
