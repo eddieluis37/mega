@@ -15,47 +15,51 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-        	'name' => 'RES',
+        	'name' => 'Fabricados ',
         	'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-        	'name' => 'CERDO',
+        	'name' => 'No fabricados',
         	'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-        	'name' => 'AVES',
+        	'name' => 'Parrilla',
         	'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-        	'name' => 'VISCERAS',
+        	'name' => 'Carnes crudas',
         	'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'PRODUCTOS PGC',
+            'name' => 'Bar',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'EMBUTIDOS',
+            'name' => 'Lechoneria',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);       
         Category::create([
-            'name' => 'OTRAS PROTEINAS',
+            'name' => 'Maquilas ',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'PESCADERIA',
+            'name' => 'Condimentos',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'SUBPRODUCTOS',
+            'name' => 'Materias prima',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'TERNERA',
+            'name' => 'Materias P Exenta',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
         Category::create([
-            'name' => 'SERVICIO',
+            'name' => 'NO Gravados',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
+        Category::create([
+            'name' => 'Gravados',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
     }
