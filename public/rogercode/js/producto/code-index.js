@@ -8,7 +8,7 @@ const btnClose = document.querySelector("#btnModalClose");
 
 const selectCategory = document.querySelector("#categoria");
 const selectCentrocosto = document.querySelector("#centrocosto");
-const alistamiento_id = document.querySelector("#alistamientoId");
+const alistamiento_id = document.querySelector("#productoId");
 const contentform = document.querySelector("#contentDisable");
 const selectCortePadre = document.querySelector("#selectCortePadre");
 const fechaalistamiento = document.querySelector("#fecha");
@@ -28,18 +28,31 @@ $(document).ready(function () {
             },
             columns: [
                 { data: "id", name: "id" },
-                { data: "namecentrocosto", name: "namecentrocosto" },
-                { data: "namecajero", name: "namecajero" },                
+                { data: "namecategorias", name: "namecategorias" },
+                { data: "namefamilia", name: "namefamilia" }, 
+                { data: "name", name: "name" },         
+                { data: "code", name: "code" },                
                 {
-                    data: "base",
-                    name: "base",
+                    data: "price_fama",
+                    name: "price_fama",
                     render: function (data, type, row) {
                         return "$" + formatCantidadSinCero(data);
                     },
                 },
-                { data: "inventory", name: "inventory" },
-                { data: "fecha1", name: "fecha1" },
-                { data: "fecha2", name: "fecha2" },
+                {
+                    data: "iva",
+                    name: "iva",
+                    render: function (data, type, row) {
+                        return formatCantidadSinCero(data) + "%";
+                    },
+                },
+                {
+                    data: "otro_impuesto",
+                    name: "otro_impuesto",
+                    render: function (data, type, row) {
+                        return formatCantidadSinCero(data) + "%";
+                    },
+                },                            
                 { data: "action", name: "action" },
             ],
             order: [[0, "DESC"]],
@@ -118,7 +131,7 @@ const showData = (resp) => {
     getCortes(register.categoria_id);
 
     const modal = new bootstrap.Modal(
-        document.getElementById("modal-create-alistamiento")
+        document.getElementById("modal-create-producto")
     );
     modal.show();
 };

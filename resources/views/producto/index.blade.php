@@ -10,7 +10,7 @@
 				</h4>
 				<ul class="tabs tab-pills">
 					<li>
-						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-alistamiento" title="Crear nuevo turno">Crear Productos</a>
+						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-producto" title="Crear nuevo turno">Crear Productos</a>
 					</li>
 				</ul>
 			</div>
@@ -20,13 +20,14 @@
 					<table id="tableAlistamiento" class="table table-striped mt-1">
 						<thead class="text-white" style="background: #3B3F5C">
 							<tr>
-								<th class="table-th text-white">T</th>
-								<th class="table-th text-white ">CentroCosto</th>
-								<th class="table-th text-white ">CAJERO</th>
-								<th class="table-th text-white ">BASE</th>
-								<th class="table-th text-white ">ESTADO</th>
-								<th class="table-th text-white">INICIO</th>
-								<th class="table-th text-white">CIERRE</th>
+								<th class="table-th text-white">ID</th>
+								<th class="table-th text-white ">CAT</th>
+								<th class="table-th text-white ">FAMILIA</th>
+								<th class="table-th text-white ">SUBFAMILIA</th>
+								<th class="table-th text-white ">CODE</th>
+								<th class="table-th text-white">PRECIO_M</th>
+								<th class="table-th text-white">IVA</th>
+								<th class="table-th text-white">ISA</th>
 								<th class="table-th text-white text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -38,7 +39,7 @@
 		</div>
 	</div>
 	<!-- modal -->
-	<div class="modal fade" id="modal-create-alistamiento" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+	<div class="modal fade" id="modal-create-producto" aria-hidden="true" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content bg-dark text-white"> <!-- Use bg-dark for dark background -->
 				<fieldset id="contentDisable">
@@ -69,4 +70,11 @@
 @section('script')
 <script src="{{asset('rogercode/js/producto/code-index.js')}}"></script>
 <script src="{{asset('rogercode/js/producto/rogercode-create-update.js')}}" type="module"></script>
+<script>
+	// Limpiar mensajes de error al cerrar el modal
+	$('#miModal').on('hidden.bs.modal', function() {
+		$(this).find('.error-message').text(''); // Limpiar mensaje de error
+		$('#categoria').val(''); // Opcional: limpiar la selección del campo
+	});
+</script>
 @endsection

@@ -16,7 +16,7 @@ const tableFoot = document.querySelector("#tabletfoot");
 const selectProducto = document.getElementById("producto");
 const selectCategoria = document.querySelector("#productoCorte");
 const btnAddAlist = document.querySelector('#btnAddAlistamiento');
-const alistamientoId = document.querySelector("#alistamientoId");
+const productoId = document.querySelector("#productoId");
 const kgrequeridos = document.querySelector("#kgrequeridos");
 const addShopping = document.querySelector("#addShopping");
 const productoPadre = document.querySelector("#productopadreId");
@@ -59,7 +59,7 @@ tbodyTable.addEventListener("click", (e) => {
                 console.log(id);
                 const dataform = new FormData();
                 dataform.append("id", Number(id));
-                dataform.append("alistamientoId", Number(alistamientoId.value));
+                dataform.append("productoId", Number(productoId.value));
                 dataform.append("centrocosto", Number(centrocosto.value));
                 dataform.append("stockPadre",stockPadre.value)
                 sendData("/alistamientodown",dataform,token).then((result) => {

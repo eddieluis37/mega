@@ -46,16 +46,18 @@ class productoController extends Controller
 
     public function show()
     {
-        $data = DB::table('cajas as ali')
-            ->join('users as u', 'ali.cajero_id', '=', 'u.id')
-            /*   ->join('meatcuts as cut', 'ali.meatcut_id', '=', 'cut.id')*/
-            ->join('centro_costo as centro', 'ali.centrocosto_id', '=', 'centro.id')
-            ->select('ali.*', 'centro.name as namecentrocosto', 'u.name as namecajero')
-            /*  ->where('ali.status', 1) */
+        $data = DB::table('products as p')
+            ->join('categories as c', 'c.id', '=', 'p.category_id')
+            ->join('meatcuts as cut', 'p.meatcut_id', '=', 'cut.id')
+            //  ->join('centro_costo as centro', 'p.centrocosto_id', '=', 'centro.id')
+            ->select('p.*', 'c.name as namecategorias', 'cut.name as namefamilia')
+            /*  ->where('p.status', 1) */
             ->get();
+
+        //     return $data;
         //$data = Compensadores::orderBy('id','desc');
         return Datatables::of($data)->addIndexColumn()
-            ->addColumn('fecha1', function ($data) {
+            /* ->addColumn('fecha1', function ($data) {
                 $fecha1 = Carbon::parse($data->fecha_hora_inicio);
                 $formattedDate1 = $fecha1->format('M-d. H:i');
                 return $formattedDate1;
@@ -64,15 +66,15 @@ class productoController extends Controller
                 $fecha2 = Carbon::parse($data->fecha_hora_cierre);
                 $formattedDate = $fecha2->format('M-d. H:i');
                 return $formattedDate;
-            })
-            ->addColumn('inventory', function ($data) {
+            }) */
+           /*  ->addColumn('inventory', function ($data) {
                 if ($data->estado == 'close') {
                     $statusInventory = '<span class="badge bg-warning">Cerrado</span>';
                 } else {
                     $statusInventory = '<span class="badge bg-success">Abierto</span>';
                 }
                 return $statusInventory;
-            })
+            }) */
 
             /*      <div class="text-center">
             <a href="caja/create/' . $data->id . '" class="btn btn-dark" title="RetiroDinero" >
@@ -363,25 +365,15 @@ class productoController extends Controller
     {
         try {
             $rules = [
-                'alistamientoId' => 'required',
-                'cajero' => [
-                    'required',
-                    function ($attribute, $value, $fail) {
-                        $currentDate = Carbon::now()->format('Y-m-d');
-                        $existingRecord = Caja::where('cajero_id', $value)
-                            ->whereDate('fecha_hora_inicio', $currentDate)
-                            ->exists();
-                        if ($existingRecord) {
-                            $fail('Ya existe un turno para el cajero en la fecha actual');
-                        }
-                    },
-                ],
+                'productoId' => 'required', 
+                'categoria' => 'required',               
                 'centrocosto' => 'required',
                 'base' => 'required',
             ];
 
             $messages = [
-                'alistamientoId.required' => 'El alistamiento es requerido',
+                'productoId.required' => 'El es requerido',
+                'categoria.required' => 'El cajero es requerido',
                 'cajero.required' => 'El cajero es requerido',
                 'centrocosto.required' => 'El centro de costo es requerido',
                 'base.required' => 'La base es requerida',
@@ -399,7 +391,7 @@ class productoController extends Controller
             $current_date->modify('next monday'); // Move to the next Monday
                 $dateNextMonday = $current_date->format('Y-m-d'); // Output the date in Y-m-d format */
 
-            $getReg = Caja::firstWhere('id', $request->alistamientoId);
+            $getReg = Caja::firstWhere('id', $request->productoId);
             if ($getReg == null) {
                 $currentDateTime = Carbon::now();
                 $currentDateFormat = Carbon::parse($currentDateTime->format('Y-m-d'));

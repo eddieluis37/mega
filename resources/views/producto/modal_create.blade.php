@@ -5,20 +5,20 @@
                 <div class="card-body">
                     <div class="btn-toolbar justify-content-between">
                         <div>
-                            <input type="hidden" value="0" name="idbeneficio" id="idbeneficio">
+                            <input type="hidden" value="0" name="productoId" id="productoId">
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="task-header">
                                 <div class="form-group">
                                     <label>Categoria</label>
                                     <div>
-                                        <select class="form-control form-control-sm" name="centrocosto_id" id="centrocosto_id" required="">
+                                        <select class="form-control form-control-sm input" name="categoria" id="categoria" required="">
                                             <option value="">Seleccione la categoria</option>
                                             @foreach ($categorias as $c)
                                             <option value="{{$c->id}}" {{ $c->id == 1 ? 'selected' : '' }}>{{$c->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('centrocostoid') <span class="text-danger er">{{ $message}}</span>@enderror
+                                        <span class="text-danger error-message"></span>
                                     </div>
                                 </div>
                             </div>
@@ -179,3 +179,19 @@
     </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Limpiar mensajes de error al cerrar el modal
+        $('#modal-create-producto').on('hidden.bs.modal', function () {
+            $(this).find('.error-message').text(''); // Limpiar mensaje de error
+            $('#categoria').val(''); // Opcional: limpiar la selección del campo
+        });
+
+        // Limpiar mensajes de error al seleccionar un campo
+        $('#categoria').change(function() {
+            $(this).siblings('.error-message').text(''); // Limpiar mensaje de error
+        });
+    });
+</script>

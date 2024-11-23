@@ -10,7 +10,7 @@ btnAddAlistamiento.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("log")
     const dataform = new FormData(formAlistamiento);
-    sendData('/cajasave',dataform,token).then((resp) => {
+    sendData('/productosave',dataform,token).then((resp) => {
         console.log(resp);
         if (resp.status == 1) {
             formAlistamiento.reset();   
