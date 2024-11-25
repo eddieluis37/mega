@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\caja\Caja;
 use App\Models\Category;
+use App\Models\Centro_costo_product;
 use App\Models\centros\Centrocosto;
 use App\Models\Third;
 use App\Models\User;
@@ -15,12 +16,13 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
-
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use App\Models\Products\Meatcut;
 use App\Http\Controllers\metodosgenerales\metodosrogercodeController;
 use App\Models\Levels_products;
+use App\Models\Listaprecio;
+use App\Models\Listapreciodetalle;
 use App\Models\Products\Unitofmeasure;
 use App\Models\shopping\shopping_enlistment;
 use App\Models\shopping\shopping_enlistment_details;
@@ -67,7 +69,7 @@ class productoController extends Controller
                 $formattedDate = $fecha2->format('M-d. H:i');
                 return $formattedDate;
             }) */
-           /*  ->addColumn('inventory', function ($data) {
+            /*  ->addColumn('inventory', function ($data) {
                 if ($data->estado == 'close') {
                     $statusInventory = '<span class="badge bg-warning">Cerrado</span>';
                 } else {
@@ -365,18 +367,30 @@ class productoController extends Controller
     {
         try {
             $rules = [
-                'productoId' => 'required', 
-                'categoria' => 'required',               
-                'centrocosto' => 'required',
-                'base' => 'required',
+                'productoId' => 'required',
+                'categoria' => 'required',
+                'marca' => 'required',
+                'nivel' => 'required',
+                'familia' => 'required',
+                'subfamilia' => 'required',
+                'stockalerta' => 'required|numeric', 
+                'impuestoiva' => 'required|numeric', 
+                'isa' => 'required|numeric',        
             ];
 
             $messages = [
                 'productoId.required' => 'El es requerido',
                 'categoria.required' => 'El cajero es requerido',
-                'cajero.required' => 'El cajero es requerido',
-                'centrocosto.required' => 'El centro de costo es requerido',
-                'base.required' => 'La base es requerida',
+                'marca.required' => 'La marca proveedora es requerida',
+                'nivel.required' => 'Nivel es requerido',
+                'familia.required' => 'Nombre de familia es requerido',
+                'subfamilia.required' => 'Nombre de producto requerido',
+                'stockalerta.required' => 'Stock alerta es requerido',
+                'stockalerta.numeric' => 'Stock alerta debe ser un numero',
+                'impuestoiva.required' => 'El IVA es requerido',
+                'impuestoiva.numeric' => 'El IVA debe ser un numero',
+                'isa.required' => 'El Imp Saludable es requerido',
+                'isa.numeric' => 'El ISA debe ser un numero',                          
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -387,33 +401,28 @@ class productoController extends Controller
                     'errors' => $validator->errors()
                 ], 422);
             }
-            /* 
-            $current_date->modify('next monday'); // Move to the next Monday
-                $dateNextMonday = $current_date->format('Y-m-d'); // Output the date in Y-m-d format */
-
-            $getReg = Caja::firstWhere('id', $request->productoId);
-            if ($getReg == null) {
-                $currentDateTime = Carbon::now();
-                $currentDateFormat = Carbon::parse($currentDateTime->format('Y-m-d'));
-                $current_date = Carbon::parse($currentDateTime->format('Y-m-d'));
-                $fechaHoraCierre =  $current_date->addHours(23);
-
-                $fechaalistamiento = $request->fecha1;
-                $id_user = Auth::user()->id;
-                $alist = new Caja();
-                $alist->user_id = $id_user;
-                $alist->centrocosto_id = $request->centrocosto;
-                $alist->cajero_id = $request->cajero;
-                $alist->base = $request->base;
-                //$alist->fecha_alistamiento = $currentDateFormat;
-                $alist->fecha_hora_inicio = $currentDateTime;
-                $alist->fecha_hora_cierre = $fechaHoraCierre;
-                $alist->status = '0'; // Open
-                $alist->save();
+          
+            $getReg = Product::firstWhere('id', $request->productoId);
+            if ($getReg == null) {            
+                $prod = new Product();              
+                $prod->category_id = $request->categoria;
+                $prod->level_product_id = $request->nivel;
+                $prod->unitofmeasure_id = $request->presentacion;
+                $prod->meatcut_id = $request->familia;
+                $prod->name = $request->subfamilia;
+                $prod->code = $request->code;
+                $prod->barcode = $request->codigobarra;
+                $prod->stock = $request->stockalerta;
+                $prod->iva = $request->impuestoiva;
+                $prod->otro_impuesto = $request->isa;
+                $prod->status = '1'; // Activo
+                $prod->save();
+                $this->CrearProductoEnCentroCosto();
+                $this->CrearProductoEnListapreciodetalle();
                 return response()->json([
                     'status' => 1,
                     'message' => 'Guardado correctamente',
-                    "registroId" => $alist->id
+                    "registroId" => $prod->id
                 ]);
             }
         } catch (\Throwable $th) {
@@ -431,6 +440,31 @@ class productoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function CrearProductoEnCentroCosto()
+    {
+        $ultimoId = Product::latest('id')->first()->id;
+
+        $centrocostoproduct = Centro_costo_product::create([
+            'centrocosto_id' => 1,
+            'products_id' => $ultimoId,
+            'tipoinventario' => 'inicial',
+        ]);
+
+        $centrocostoproduct->save();
+    }
+
+    public function CrearProductoEnListapreciodetalle()
+    {
+        $ultimoId = Product::latest('id')->first()->id;
+        $listaprecios = Listaprecio::all();
+        foreach ($listaprecios as $listaprecio) {
+            $listapreciodetalle = Listapreciodetalle::create([
+                'listaprecio_id' => $listaprecio->id,
+                'product_id' => $ultimoId,
+            ]);
+            $listapreciodetalle->save();
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.

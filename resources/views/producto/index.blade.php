@@ -10,7 +10,7 @@
 				</h4>
 				<ul class="tabs tab-pills">
 					<li>
-						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-producto" title="Crear nuevo turno">Crear Productos</a>
+						<a href="javascript:void(0)" onclick="showModalcreate()" class="tabmenu bg-dark" data-toggle="modal" data-target="#modal-create-producto" title="Crear nuevo producto">Crear Productos</a>
 					</li>
 				</ul>
 			</div>
@@ -70,11 +70,4 @@
 @section('script')
 <script src="{{asset('rogercode/js/producto/code-index.js')}}"></script>
 <script src="{{asset('rogercode/js/producto/rogercode-create-update.js')}}" type="module"></script>
-<script>
-	// Limpiar mensajes de error al cerrar el modal
-	$('#miModal').on('hidden.bs.modal', function() {
-		$(this).find('.error-message').text(''); // Limpiar mensaje de error
-		$('#categoria').val(''); // Opcional: limpiar la selección del campo
-	});
-</script>
 @endsection

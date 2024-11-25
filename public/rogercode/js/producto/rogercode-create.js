@@ -10,13 +10,14 @@ const tfootTable = document.querySelector("#tableAlistamiento tfoot")
 const stockPadre = document.querySelector("#stockCortePadre");
 const pesokg = document.querySelector("#pesokg");
 
-const newStockPadre = document.querySelector("#newStockPadre");
+
 
 const tableFoot = document.querySelector("#tabletfoot");
 const selectProducto = document.getElementById("producto");
+const productoId = document.querySelector("#productoId");
 const selectCategoria = document.querySelector("#productoCorte");
 const btnAddAlist = document.querySelector('#btnAddAlistamiento');
-const productoId = document.querySelector("#productoId");
+
 const kgrequeridos = document.querySelector("#kgrequeridos");
 const addShopping = document.querySelector("#addShopping");
 const productoPadre = document.querySelector("#productopadreId");

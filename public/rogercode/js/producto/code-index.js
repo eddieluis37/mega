@@ -7,6 +7,8 @@ const token = document
 const btnClose = document.querySelector("#btnModalClose");
 
 const selectCategory = document.querySelector("#categoria");
+const selectMarca = document.querySelector("#marca");
+
 const selectCentrocosto = document.querySelector("#centrocosto");
 const alistamiento_id = document.querySelector("#productoId");
 const contentform = document.querySelector("#contentDisable");
