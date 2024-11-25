@@ -370,11 +370,11 @@ function convertirHora(hora24) {
     horas = horas < 10 ? "0" + horas : horas;
 
     // Crear la cadena de la hora en formato de 12 horas
-//  var hora12 = horas + ":" + minutos + " " + periodo;
-    var hora12 = horas + ":" + minutos;
+//  var hora12Inicial = horas + ":" + minutos + " " + periodo;
+    var hora12Inicial = horas + ":" + minutos;
 
 
-    return hora12;
+    return hora12Inicial;
 }
 //
 const showForm = (data) => {
@@ -393,14 +393,17 @@ const showForm = (data) => {
     $("#observacion").val(resp.observacion).trigger("change");
 
     // Convertir la hora inicial de entrega al formato de 12 horas
-    var hora12 = convertirHora(resp.hora_inicial_entrega);
+    var hora12Inicial = convertirHora(resp.hora_inicial_entrega);
+    var hora12Final = convertirHora(resp.hora_final_entrega);
+    
 
-    // Establecer el valor de la hora inicial de entrega en formato de 12 horas
-  //  $("#hora_inicial_entrega").val(hora12).trigger("change");
+    // Establecer el valor de la hora inicial y final de entrega en formato de 12 horas
+    $("#hora_inicial_entrega").val(hora12Inicial).trigger("change");
+    $("#hora_final_entrega").val(hora12Final).trigger("change");
 
   //   inputhora_inicial_entrega.value = "03:30";
 
-    console.log(hora12); // Salida: "03:30 pm"
+    console.log(hora12Inicial); // Salida: "03:30 pm"
 
     const modal = new bootstrap.Modal(
         document.getElementById("modal-create-compensado")
