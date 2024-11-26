@@ -388,6 +388,8 @@ Route::group(['middleware' => [('auth')]], function () {
     Route::get('producto/create/{id}', [productoController::class, 'create'])->name('producto.create');
     Route::post('producto/create/{id}', [productoController::class, 'storeCierreCaja'])->name('producto.cierre');
     Route::get('producto/showReciboCaja/{id}', [productoController::class, 'showReciboCaja'])->name('producto.showReciboProducto');
+    Route::get('/producto-edit/{id}', [productoController::class, 'edit'])->name('producto.edit');
+
     
 
     /** TALLER ***/

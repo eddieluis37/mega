@@ -16,7 +16,7 @@ btnAddAlistamiento.addEventListener("click", async (e) => {
             formAlistamiento.reset();   
             btnClose.click();
             successToastMessage(resp.message); 
-         //   refresh_table();
+               refresh_table();
             if (resp.registroId != 0) {//for new register
                 refresh_table();
               /*   window.location.href = `caja/create/${resp.registroId}`; */
@@ -37,3 +37,8 @@ btnAddAlistamiento.addEventListener("click", async (e) => {
         }
     });
 })
+
+// Limpiar mensajes de error al cerrar la ventana modal
+$('#modal-create-producto').on('hidden.bs.modal', function () {
+    $('.error-message').text('');
+});

@@ -97,13 +97,12 @@ class productoController extends Controller
                 if ($data->status == 1) {
                     $btn = '
                          <div class="text-center">   
-                         <a href="caja/pdfCierreCaja/' . $data->id . '" class="btn btn-dark" title="PdfCuadreCajaPendiente" target="_blank">
-                         <i class="far fa-file-pdf"></i>
-                         </a>
+                         
+                         <button class="btn btn-dark" title="Editar CabezaOrden" onclick="edit(' . $data->id . ');">
+						    <i class="fas fa-edit"></i>
+					    </button>
                       
-                         <a href="caja/showReciboCaja/' . $data->id . '" class="btn btn-dark" title="RecibodeCajaCerrado" target="_blank">
-                         <i class="fas fa-eye"></i>
-                         </a>				
+                         				
                          <button class="btn btn-dark" title="Borrar" disabled>
                              <i class="fas fa-trash"></i>
                          </button>
@@ -373,9 +372,9 @@ class productoController extends Controller
                 'nivel' => 'required',
                 'familia' => 'required',
                 'subfamilia' => 'required',
-                'stockalerta' => 'required|numeric', 
-                'impuestoiva' => 'required|numeric', 
-                'isa' => 'required|numeric',        
+                'stockalerta' => 'required|numeric',
+                'impuestoiva' => 'required|numeric',
+                'isa' => 'required|numeric',
             ];
 
             $messages = [
@@ -390,7 +389,7 @@ class productoController extends Controller
                 'impuestoiva.required' => 'El IVA es requerido',
                 'impuestoiva.numeric' => 'El IVA debe ser un numero',
                 'isa.required' => 'El Imp Saludable es requerido',
-                'isa.numeric' => 'El ISA debe ser un numero',                          
+                'isa.numeric' => 'El ISA debe ser un numero',
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -401,10 +400,10 @@ class productoController extends Controller
                     'errors' => $validator->errors()
                 ], 422);
             }
-          
+
             $getReg = Product::firstWhere('id', $request->productoId);
-            if ($getReg == null) {            
-                $prod = new Product();              
+            if ($getReg == null) {
+                $prod = new Product();
                 $prod->category_id = $request->categoria;
                 $prod->level_product_id = $request->nivel;
                 $prod->unitofmeasure_id = $request->presentacion;
@@ -423,6 +422,25 @@ class productoController extends Controller
                     'status' => 1,
                     'message' => 'Guardado correctamente',
                     "registroId" => $prod->id
+                ]);
+            } else {
+                $updateProd = Product::firstWhere('id', $request->productoId);                             
+                $updateProd->category_id = $request->categoria;
+                $updateProd->level_product_id = $request->nivel;
+                $updateProd->unitofmeasure_id = $request->presentacion;
+                $updateProd->meatcut_id = $request->familia;
+                $updateProd->name = $request->subfamilia;
+                $updateProd->code = $request->code;
+                $updateProd->barcode = $request->codigobarra;
+                $updateProd->stock = $request->stockalerta;
+                $updateProd->iva = $request->impuestoiva;
+                $updateProd->otro_impuesto = $request->isa;
+                $updateProd->save();
+
+                return response()->json([
+                    "status" => 1,
+                    "message" => "Editado correctamente",
+                    "registroId" => 0
                 ]);
             }
         } catch (\Throwable $th) {
@@ -472,9 +490,13 @@ class productoController extends Controller
      * @param  \App\Models\Caja  $caja
      * @return \Illuminate\Http\Response
      */
-    public function edit(Caja $caja)
+    public function edit($id)
     {
-        //
+        $productos = Product::where('id', $id)->first();
+        return response()->json([
+            "id" => $id,
+            "listadoproductos" => $productos,
+        ]);
     }
 
     /**

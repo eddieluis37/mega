@@ -10,9 +10,9 @@ const selectCategory = document.querySelector("#categoria");
 const selectMarca = document.querySelector("#marca");
 
 const selectCentrocosto = document.querySelector("#centrocosto");
-const alistamiento_id = document.querySelector("#productoId");
+const producto_id = document.querySelector("#productoId");
 const contentform = document.querySelector("#contentDisable");
-const selectCortePadre = document.querySelector("#selectCortePadre");
+
 const fechaalistamiento = document.querySelector("#fecha");
 
 
@@ -82,6 +82,44 @@ $(document).ready(function () {
    
 });
 
+const edit = async (id) => {
+    console.log(id);
+    const response = await fetch(`/producto-edit/${id}`);
+    const data = await response.json();
+    console.log(data);
+    if (contentform.hasAttribute("disabled")) {
+        contentform.removeAttribute("disabled");
+
+        $("#cliente").prop("disabled", false);
+    }
+    showForm(data);
+};
+
+const showForm = (data) => {
+    let resp = data.listadoproductos;
+    console.log(resp);
+    producto_id.value = resp.id;
+    
+    $("#categoria").val(resp.category_id).trigger("change");
+    $("#marca").val(resp.proveedor_id).trigger("change");
+    $("#nivel").val(resp.level_product_id).trigger("change");
+    $("#presentacion").val(resp.unitofmeasure_id).trigger("change");
+    $("#familia").val(resp.meatcut_id).trigger("change");
+    $("#subfamilia").val(resp.name).trigger("change");
+    $("#code").val(resp.code).trigger("change");
+    $("#codigobarra").val(resp.barcode).trigger("change");
+    $("#stockalerta").val(resp.alerts).trigger("change");
+    $("#impuestoiva").val(resp.iva).trigger("change");
+    $("#isa").val(resp.otro_impuesto).trigger("change");   
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("modal-create-producto")
+    );
+    modal.show();
+};
+
+
+
 const showModalcreate = () => {
     if (contentform.hasAttribute("disabled")) {
         contentform.removeAttribute("disabled");
@@ -90,23 +128,10 @@ const showModalcreate = () => {
     $(".select2corte").val("").trigger("change");
     selectCortePadre.innerHTML = "";
     formAlistamiento.reset();
-    alistamiento_id.value = 0;
+    producto_id.value = 0;
 };
 
-//const editAlistamiento = (id) => {
-//console.log(id);
-//const dataform = new FormData();
-//dataform.append('id', id);
-//send(dataform,'/alistamientoById').then((resp) => {
-//console.log(resp);
-//console.log(resp.reg);
-//showData(resp);
-//if(contentform.hasAttribute('disabled')){
-//contentform.removeAttribute('disabled');
-//$('#provider').prop('disabled', false);
-//}
-//});
-//}
+
 
 const showDataForm = (id) => {
     console.log(id);
@@ -126,7 +151,7 @@ const showDataForm = (id) => {
 
 const showData = (resp) => {
     let register = resp.reg;
-    //alistamiento_id.value = register.id;
+    //producto_id.value = register.id;
    
     selectCentrocosto.value = register.centrocosto_id;
     fechaalistamiento.value = register.fecha_hora_inicio;
@@ -204,3 +229,8 @@ const refresh_table = () => {
     let table = $("#tableAlistamiento").dataTable();
     table.fnDraw(false);
 };
+
+// Limpiar mensajes de error al cerrar la ventana modal
+$('#modal-create-producto').on('hidden.bs.modal', function () {
+    $('.error-message').text('');
+});
