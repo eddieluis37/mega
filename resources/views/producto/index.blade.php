@@ -45,7 +45,7 @@
 				<fieldset id="contentDisable">
 					<form action="" id="form-alistamiento">
 						<div class="modal-header bg-secondary"> <!-- Use bg-secondary for a darker header -->
-							<h4 class="modal-title" style="color: white; font-weight: bold;">Productos | CREAR </h4>
+							<h4 class="modal-title" style="color: white; font-weight: bold;">Productos | Admin </h4>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

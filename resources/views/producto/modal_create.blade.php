@@ -210,6 +210,8 @@
             $('#nivel').val('');
             $('#familia').val('');
             $('#subfamilia').val('');
+            $('#code').val('');
+            $('#codigobarra').val('');
             $('#marca').val('');
             $('#stockalerta').val('');
             $('#impuestoiva').val('');
@@ -227,6 +229,12 @@
             $(this).siblings('.error-message').text(''); // Limpiar mensaje de error
         });
         $('#subfamilia').change(function() {
+            $(this).siblings('.error-message').text(''); // Limpiar mensaje de error
+        });
+        $('#code').change(function() {
+            $(this).siblings('.error-message').text(''); // Limpiar mensaje de error
+        });
+        $('#codigobarra').change(function() {
             $(this).siblings('.error-message').text(''); // Limpiar mensaje de error
         });
         $('#marca').change(function() {

@@ -208,13 +208,14 @@ span.red {
   font-size: 15px;
   padding: 8px 10px;
   letter-spacing: 1px;
-  height: calc(1.4em + 1.4rem + 2px);
+  /* height: calc(1.4em + 1.4rem + 2px); */
+  height: calc(1.1em + 1.2rem + 2px);
   padding: .75rem 1.25rem;
   border-radius: 6px; }
   .form-control[type="range"] {
     padding: 0; }
   .form-control:focus {
-    box-shadow: 0 0 5px 2px rgba(194, 213, 255, 0.619608);
+    box-shadow: 0 0 5px 2px rgba(249, 0, 0, 0.587);
     border-color: #1b55e2;
     color: #3b3f5c; }
   .form-control::-webkit-input-placeholder, .form-control::-ms-input-placeholder, .form-control::-moz-placeholder {

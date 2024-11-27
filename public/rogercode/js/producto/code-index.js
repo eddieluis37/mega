@@ -7,6 +7,7 @@ const token = document
 const btnClose = document.querySelector("#btnModalClose");
 
 const selectCategory = document.querySelector("#categoria");
+
 const selectMarca = document.querySelector("#marca");
 
 const selectCentrocosto = document.querySelector("#centrocosto");
@@ -78,8 +79,13 @@ $(document).ready(function () {
                 },
             },
         });
-    });   
-   
+    });
+    $(".selectMarca").select2({
+        placeholder: "Busca un proveedor",
+        width: "100%",
+        theme: "bootstrap-5",
+        allowClear: true,
+    });
 });
 
 const edit = async (id) => {
@@ -133,21 +139,7 @@ const showModalcreate = () => {
 
 
 
-const showDataForm = (id) => {
-    console.log(id);
-    const dataform = new FormData();
-    dataform.append("id", id);
-    send(dataform, "/alistamientoById").then((resp) => {
-        console.log(resp);
-        console.log(resp.reg);
-        showData(resp);
-        setTimeout(() => {
-            $(".select2corte").val(resp.reg.meatcut_id).trigger("change");
-        }, 1000);
-        $(".select2corte").prop("disabled", true);
-        contentform.setAttribute("disabled", "disabled");
-    });
-};
+
 
 const showData = (resp) => {
     let register = resp.reg;
@@ -176,31 +168,8 @@ const send = async (dataform, ruta) => {
     return data;
 };
 
-selectCategory.addEventListener("change", function () {
-    const selectedValue = this.value;
-    console.log("Selected value:", selectedValue);
-    getCortes(selectedValue);
-});
 
-getCortes = (categoryId) => {
-    const dataform = new FormData();
-    dataform.append("categoriaId", Number(categoryId));
-    send(dataform, "/getproductospadre").then((result) => {
-        console.log(result);
-        let prod = result.products;
-        console.log(prod);
-        //showDataTable(result);
-        selectCortePadre.innerHTML = "";
-        selectCortePadre.innerHTML += `<option value="">Seleccione el producto</option>`;
-        // Create and append options to the select element
-        prod.forEach((option) => {
-            const optionElement = document.createElement("option");
-            optionElement.value = option.id;
-            optionElement.text = option.name;
-            selectCortePadre.appendChild(optionElement);
-        });
-    });
-};
+
 
 const downAlistamiento = (id) => {
     swal({
