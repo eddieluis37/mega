@@ -1,6 +1,6 @@
 console.log("Starting");
-const btnAddAlistamiento = document.querySelector("#btnAddalistamiento");
-const formAlistamiento = document.querySelector("#form-alistamiento");
+const btnAddProducto = document.querySelector("#btnAddproducto");
+const formProducto = document.querySelector("#form-producto");
 const token = document
     .querySelector('meta[name="csrf-token"]')
     .getAttribute("content");
@@ -19,7 +19,7 @@ const fechaalistamiento = document.querySelector("#fecha");
 
 $(document).ready(function () {
     $(function () {
-        $("#tableAlistamiento").DataTable({
+        $("#tableProducto").DataTable({
             paging: true,
             pageLength: 5,
             autoWidth: false,
@@ -124,37 +124,6 @@ const showForm = (data) => {
     modal.show();
 };
 
-
-
-const showModalcreate = () => {
-    if (contentform.hasAttribute("disabled")) {
-        contentform.removeAttribute("disabled");
-        $(".select2corte").prop("disabled", false);
-    }
-    $(".select2corte").val("").trigger("change");
-    selectCortePadre.innerHTML = "";
-    formAlistamiento.reset();
-    producto_id.value = 0;
-};
-
-
-
-
-
-const showData = (resp) => {
-    let register = resp.reg;
-    //producto_id.value = register.id;
-   
-    selectCentrocosto.value = register.centrocosto_id;
-    fechaalistamiento.value = register.fecha_hora_inicio;
-    getCortes(register.categoria_id);
-
-    const modal = new bootstrap.Modal(
-        document.getElementById("modal-create-producto")
-    );
-    modal.show();
-};
-
 const send = async (dataform, ruta) => {
     let response = await fetch(ruta, {
         headers: {
@@ -168,34 +137,8 @@ const send = async (dataform, ruta) => {
     return data;
 };
 
-
-
-
-const downAlistamiento = (id) => {
-    swal({
-        title: "CONFIRMAR",
-        text: "¿CONFIRMAS ELIMINAR EL REGISTRO?",
-        type: "warning",
-        showCancelButton: true,
-        cancelButtonText: "Cerrar",
-        cancelButtonColor: "#fff",
-        confirmButtonColor: "#3B3F5C",
-        confirmButtonText: "Aceptar",
-    }).then(function (result) {
-        if (result.value) {
-            console.log(id);
-            const dataform = new FormData();
-            dataform.append("id", id);
-            send(dataform, "/downmmainalistamiento").then((resp) => {
-                console.log(resp);
-                refresh_table();
-            });
-        }
-    });
-};
-
 const refresh_table = () => {
-    let table = $("#tableAlistamiento").dataTable();
+    let table = $("#tableProducto").dataTable();
     table.fnDraw(false);
 };
 

@@ -2,18 +2,18 @@ import {sendData} from '../exportModule/core/rogercode-core.js';
 import { successToastMessage, errorMessage } from '../exportModule/message/rogercode-message.js';
 
 const refresh_table = () => {
-    let table = $("#tableAlistamiento").dataTable();
+    let table = $("#tableProducto").dataTable();
     table.fnDraw(false);
 };
 
-btnAddAlistamiento.addEventListener("click", async (e) => {
+btnAddProducto.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("log")
-    const dataform = new FormData(formAlistamiento);
+    const dataform = new FormData(formProducto);
     sendData('/productosave',dataform,token).then((resp) => {
         console.log(resp);
         if (resp.status == 1) {
-            formAlistamiento.reset();   
+            formProducto.reset();   
             btnClose.click();
             successToastMessage(resp.message); 
                refresh_table();

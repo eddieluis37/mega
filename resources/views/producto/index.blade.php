@@ -17,7 +17,7 @@
 
 			<div class="widget-content">
 				<div class="table-responsive">
-					<table id="tableAlistamiento" class="table table-striped mt-1">
+					<table id="tableProducto" class="table table-striped mt-1">
 						<thead class="text-white" style="background: #3B3F5C">
 							<tr>
 								<th class="table-th text-white">ID</th>
@@ -43,7 +43,7 @@
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content bg-dark text-white"> <!-- Use bg-dark for dark background -->
 				<fieldset id="contentDisable">
-					<form action="" id="form-alistamiento">
+					<form action="" id="form-producto">
 						<div class="modal-header bg-secondary"> <!-- Use bg-secondary for a darker header -->
 							<h4 class="modal-title" style="color: white; font-weight: bold;">Productos | Admin </h4>
 							<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
@@ -55,7 +55,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" id="btnModalClose" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-							<button type="submit" id="btnAddalistamiento" class="btn btn-primary">Aceptar</button>
+							<button type="submit" id="btnAddproducto" class="btn btn-primary">Aceptar</button>
 						</div>
 					</form>
 				</fieldset>

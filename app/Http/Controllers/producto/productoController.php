@@ -421,11 +421,11 @@ class productoController extends Controller
                 $this->CrearProductoEnListapreciodetalle();
                 return response()->json([
                     'status' => 1,
-                    'message' => 'Guardado correctamente',
+                    'message' => "Producto: " . $prod->name . ' ' . 'Creado con ID: ' . $prod->id,
                     "registroId" => $prod->id
                 ]);
             } else {
-                $updateProd = Product::firstWhere('id', $request->productoId);                             
+                $updateProd = Product::firstWhere('id', $request->productoId);
                 $updateProd->category_id = $request->categoria;
                 $updateProd->proveedor_id = $request->marca;
                 $updateProd->level_product_id = $request->nivel;
@@ -441,7 +441,7 @@ class productoController extends Controller
 
                 return response()->json([
                     "status" => 1,
-                    "message" => "Editado correctamente",
+                    "message" => "Producto: " . $updateProd->name . ' ' . 'Editado con ID: ' . $updateProd->id,
                     "registroId" => 0
                 ]);
             }

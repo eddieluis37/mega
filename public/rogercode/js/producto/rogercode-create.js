@@ -4,9 +4,9 @@ import { loadingStart, loadingEnd } from '../exportModule/core/rogercode-core.js
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const formDetail = document.querySelector('#form-detail');
 const showRegTbody = document.querySelector("#tbodyDetail");
-const tableAlistamiento = document.querySelector("#tableAlistamiento");
-const tbodyTable = document.querySelector("#tableAlistamiento tbody")
-const tfootTable = document.querySelector("#tableAlistamiento tfoot")
+const tableProducto = document.querySelector("#tableProducto");
+const tbodyTable = document.querySelector("#tableProducto tbody")
+const tfootTable = document.querySelector("#tableProducto tfoot")
 const stockPadre = document.querySelector("#stockCortePadre");
 const pesokg = document.querySelector("#pesokg");
 
@@ -16,7 +16,7 @@ const tableFoot = document.querySelector("#tabletfoot");
 const selectProducto = document.getElementById("producto");
 const productoId = document.querySelector("#productoId");
 const selectCategoria = document.querySelector("#productoCorte");
-const btnAddAlist = document.querySelector('#btnAddAlistamiento');
+const btnAddAlist = document.querySelector('#btnAddProducto');
 
 const kgrequeridos = document.querySelector("#kgrequeridos");
 const addShopping = document.querySelector("#addShopping");

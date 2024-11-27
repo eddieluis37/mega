@@ -12,7 +12,7 @@
                                 <div class="form-group">
                                     <label>Categoria</label>
                                     <div>
-                                        <select class="form-control form-control-sm input" name="categoria" id="categoria" required="">
+                                        <select class="form-control selectCategory" name="categoria" id="categoria" required="">
                                             <option value="">Seleccione la categoria</option>
                                             @foreach ($categorias as $c)
                                             <option value="{{$c->id}}" {{ $c->id == 1 ? 'selected' : '' }}>{{$c->name}}</option>
@@ -205,14 +205,15 @@
         // Limpiar mensajes de error al cerrar el modal
         $('#modal-create-producto').on('hidden.bs.modal', function() {
             $(this).find('.error-message').text(''); // Limpiar mensaje de error
-
+            $('#productoId').val(0); // Para evitar que al crear nuevo producto se edite el registro anterior editado
             $('#categoria').val(''); // Opcional: limpiar la selección del campo
+            $('#selectMarca').val('');
+            $('#marca').val('');
             $('#nivel').val('');
             $('#familia').val('');
             $('#subfamilia').val('');
             $('#code').val('');
-            $('#codigobarra').val('');
-            $('#marca').val('');
+            $('#codigobarra').val('');          
             $('#stockalerta').val('');
             $('#impuestoiva').val('');
             $('#isa').val('');
