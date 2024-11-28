@@ -103,9 +103,23 @@ const edit = async (id) => {
 
 const showForm = (data) => {
     let resp = data.listadoproductos;
-    console.log(resp);
-    producto_id.value = resp.id;
+    console.log(resp);    
+
+    // Log de tipos y valores antes de la conversion
+    console.log("Antes de conversion:");
+    console.log("iva:", resp.iva, "Type:", typeof resp.iva);
+    console.log("otro_impuesto:", resp.otro_impuesto, "Type:", typeof resp.otro_impuesto);
+
+    // Convierte a numero
+    const ivaNumber = Number(resp.iva);
+    const otroImpuestoNumber = Number(resp.otro_impuesto);
+
+    // Log de tipos y valores despues de conversion
+    console.log("Despues de conversion:");
+    console.log("iva:", ivaNumber, "Type:", typeof ivaNumber);
+    console.log("otro_impuesto:", otroImpuestoNumber, "Type:", typeof otroImpuestoNumber);
     
+    producto_id.value = resp.id;
     $("#categoria").val(resp.category_id).trigger("change");
     $("#marca").val(resp.proveedor_id).trigger("change");
     $("#nivel").val(resp.level_product_id).trigger("change");
@@ -115,8 +129,8 @@ const showForm = (data) => {
     $("#code").val(resp.code).trigger("change");
     $("#codigobarra").val(resp.barcode).trigger("change");
     $("#stockalerta").val(resp.alerts).trigger("change");
-    $("#impuestoiva").val(resp.iva).trigger("change");
-    $("#isa").val(resp.otro_impuesto).trigger("change");   
+    $("#impuestoiva").val(ivaNumber).trigger("change");
+    $("#isa").val(otroImpuestoNumber).trigger("change");   
 
     const modal = new bootstrap.Modal(
         document.getElementById("modal-create-producto")
