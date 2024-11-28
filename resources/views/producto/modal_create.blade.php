@@ -111,7 +111,7 @@
                                 <div class="form-group">
                                     <label>Stock Alertas</label>
                                     <div>
-                                        <select class="form-control form-control-sm" name="stockalerta" id="stockalerta" required="">
+                                        <select class="form-control form-control-sm" name="alerta" id="alerta" required="">
                                             <option value="">Seleccione</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>

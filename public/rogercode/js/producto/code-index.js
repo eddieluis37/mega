@@ -107,6 +107,7 @@ const showForm = (data) => {
 
     // Log de tipos y valores antes de la conversion
     console.log("Antes de conversion:");
+    console.log("alerta:", resp.alerts, "Type:", typeof resp.alerts);
     console.log("iva:", resp.iva, "Type:", typeof resp.iva);
     console.log("otro_impuesto:", resp.otro_impuesto, "Type:", typeof resp.otro_impuesto);
 
@@ -128,7 +129,7 @@ const showForm = (data) => {
     $("#subfamilia").val(resp.name).trigger("change");
     $("#code").val(resp.code).trigger("change");
     $("#codigobarra").val(resp.barcode).trigger("change");
-    $("#stockalerta").val(resp.alerts).trigger("change");
+    $("#alerta").val(resp.alerts).trigger("change");
     $("#impuestoiva").val(ivaNumber).trigger("change");
     $("#isa").val(otroImpuestoNumber).trigger("change");   
 

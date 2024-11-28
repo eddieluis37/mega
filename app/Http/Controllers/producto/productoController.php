@@ -372,7 +372,7 @@ class productoController extends Controller
                 'nivel' => 'required',
                 'familia' => 'required',
                 'subfamilia' => 'required',
-                'stockalerta' => 'required|numeric',
+                'alerta' => 'required|numeric',
                 'impuestoiva' => 'required|numeric',
                 'isa' => 'required|numeric',
             ];
@@ -384,8 +384,8 @@ class productoController extends Controller
                 'nivel.required' => 'Nivel es requerido',
                 'familia.required' => 'Nombre de familia es requerido',
                 'subfamilia.required' => 'Nombre de producto requerido',
-                'stockalerta.required' => 'Stock alerta es requerido',
-                'stockalerta.numeric' => 'Stock alerta debe ser un numero',
+                'alerta.required' => 'Stock alerta es requerido',
+                'alerta.numeric' => 'Stock alerta debe ser un numero',
                 'impuestoiva.required' => 'El IVA es requerido',
                 'impuestoiva.numeric' => 'El IVA debe ser un numero',
                 'isa.required' => 'El Imp Saludable es requerido',
@@ -412,7 +412,7 @@ class productoController extends Controller
                 $prod->name = $request->subfamilia;
                 $prod->code = $request->code;
                 $prod->barcode = $request->codigobarra;
-                $prod->stock = $request->stockalerta;
+                $prod->alerts = $request->alerta;
                 $prod->iva = $request->impuestoiva;
                 $prod->otro_impuesto = $request->isa;
                 $prod->status = '1'; // Activo
@@ -434,7 +434,7 @@ class productoController extends Controller
                 $updateProd->name = $request->subfamilia;
                 $updateProd->code = $request->code;
                 $updateProd->barcode = $request->codigobarra;
-                $updateProd->stock = $request->stockalerta;
+                $updateProd->alerts = $request->alerta;
                 $updateProd->iva = $request->impuestoiva;
                 $updateProd->otro_impuesto = $request->isa;
                 $updateProd->save();
