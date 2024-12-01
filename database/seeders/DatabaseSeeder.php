@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\Levels_products;
 use App\Models\Subcentrocosto;
 use Illuminate\Database\Seeder;
@@ -58,5 +59,6 @@ class DatabaseSeeder extends Seeder
    // $this->call(NotacreditoSeeder::class);
    //$this->call(RecibodecajaSeeder::class);
    $this->call(Cuentas_por_cobrarSeeder::class);
+   $this->call(BrandSeeder::class);
   }
 }
